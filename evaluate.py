@@ -1,16 +1,3 @@
-"""
-evaluate.py – Measure anomaly detection performance on the test set.
-
-Metrics
--------
-- Precision, Recall, F1 for the fraud class
-- ROC-AUC (uses decision_function scores where available)
-- Confusion matrix
-
-Since the dataset is extremely imbalanced (~0.17% fraud), accuracy
-alone is meaningless — a model that says "everything is normal" gets
-99.8% accuracy. Recall (catching actual fraud) matters most.
-"""
 
 import os
 import pickle

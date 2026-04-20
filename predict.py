@@ -1,9 +1,3 @@
-"""
-predict.py – Interactive anomaly predictor.
-
-Loads a trained model and lets you feed in a transaction to see
-whether it would be flagged as fraud.
-"""
 
 import os
 import pickle
@@ -22,10 +16,6 @@ def load_model(name):
 
 
 def predict_single(model, features):
-    """
-    Predict whether a single transaction is anomalous.
-    Returns (label, score) where label is 'FRAUD' or 'NORMAL'.
-    """
     X = np.array(features).reshape(1, -1)
     raw = model.predict(X)[0]
     label = "FRAUD" if raw == -1 else "NORMAL"

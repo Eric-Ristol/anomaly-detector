@@ -1,18 +1,3 @@
-"""
-train.py – Train three unsupervised anomaly detection models.
-
-Each model learns only from normal transactions and flags anything
-that deviates as an anomaly.
-
-Models
-------
-1. Isolation Forest   – tree-based; isolates anomalies with fewer splits
-2. Local Outlier Factor (LOF) – density-based; compares local reachability
-3. One-Class SVM      – boundary-based; learns a tight envelope around normal data
-
-All three output -1 for anomaly, 1 for normal. We convert to 1=fraud, 0=normal
-to match the original labels for evaluation.
-"""
 
 import os
 import time
@@ -62,7 +47,7 @@ def train_all():
         print(f"\nTraining {name} …")
         t0 = time.time()
 
-        #OCSVM is O(n²~n³) — subsample to keep training under a minute
+        #OCSVM is O(n²~n³) -- subsample to keep training under a minute
         if name == "ocsvm" and X_train.shape[0] > 30_000:
             rng = np.random.default_rng(SEED)
             idx = rng.choice(X_train.shape[0], size=30_000, replace=False)

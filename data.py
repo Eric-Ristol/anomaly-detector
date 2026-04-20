@@ -1,15 +1,3 @@
-"""
-data.py – Load and prepare the Credit Card Fraud dataset.
-
-Source: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
-The CSV has 284,807 transactions. Column "Class" is the label
-(0 = normal, 1 = fraud). Features V1–V28 are PCA components;
-"Time" and "Amount" are the only original features.
-
-Since this is an unsupervised project we train ONLY on the normal
-transactions (the model never sees fraud during fitting). The test
-set keeps both normal and fraud so we can measure detection quality.
-"""
 
 import os
 import numpy as np
@@ -38,10 +26,6 @@ def load_raw():
 
 
 def preprocess(df):
-    """
-    Scale Time and Amount (V1–V28 are already PCA-scaled).
-    Returns features X, labels y, and the fitted scaler.
-    """
     df = df.copy()
 
     scaler = StandardScaler()
@@ -55,11 +39,6 @@ def preprocess(df):
 
 
 def split_data(X, y):
-    """
-    Train/test split with a twist: the training set contains ONLY
-    normal transactions (unsupervised). The test set keeps both
-    classes so we can evaluate detection performance.
-    """
     X_train_full, X_test, y_train_full, y_test = train_test_split(
         X, y, test_size=TEST_SIZE, random_state=SEED, stratify=y,
     )
