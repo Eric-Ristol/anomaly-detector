@@ -8,3 +8,4 @@ build/
 .env
 data/
 models/test_data.npz
+models/lof.pkl
